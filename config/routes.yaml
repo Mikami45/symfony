@@ -11,7 +11,3 @@ wild_show_index:
 app_index:
   path: /home/
   controller: App\Controller\DefaultController::index
-
-base_index:
-  path: /base/
-  controller: App\Controller\BaseController::index
