@@ -8,6 +8,10 @@ use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Program;
 use App\Entity\Category;
 
+/**
+ * @Route ("/wild")
+ */
+
 class WildController extends AbstractController
 {
     /**
@@ -35,7 +39,7 @@ class WildController extends AbstractController
      * Getting a program with a formatted slug for title
      *
      * param string $slug The slugger
-     * @Route("/wild/show/{slug}",
+     * @Route("/show/{slug}",
      *     requirements={"slug" = "[a-z0-9\-]+"},
      *     defaults={"slug" = "Aucune série sélectionnée, veuillez choisir une série"},
      *     name = "show")
@@ -70,8 +74,8 @@ class WildController extends AbstractController
     }
 
     /**
-     * @Route("wild/category/{categoryName}",
-     *     name="wild_category"),
+     * @Route("/category/{categoryName}",
+     *     name="show_category"),
      * @param string|null $categoryName
      * @return Response
      */
@@ -93,7 +97,8 @@ class WildController extends AbstractController
             ->getRepository(Program::class)
             ->findBy(
                 ['category' => ($category)],
-                ['id' => 'DESC'], 3
+                ['id' => 'DESC'],
+                3
             );
         if (!$program) {
             throw $this->createNotFoundException(
@@ -107,5 +112,13 @@ class WildController extends AbstractController
             ]
         );
     }
+    public function showByProgram()
+    {
 
+    }
+
+    public function showBySeson(int $id)
+    {
+
+    }
 }
