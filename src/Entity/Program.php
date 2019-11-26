@@ -91,49 +91,41 @@ class Program
         return $this;
     }
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Program", mappedBy="category")
+     * @ORM\OneToMany(targetEntity="App\Entity\Season", mappedBy="program")
+     * @ORM\Column(type="string")
      */
-    private $programs;
+    private $seasons;
 
     public function __construct()
     {
-        $this->programs = new ArrayCollection();
+        $this->seasons = new ArrayCollection();
     }
 
     /**
-     * @return Collection|Program[]
+     * @return Collection|Season[]
      */
-    public function getPrograms(): Collection
+    public function getSeasons(): Collection
     {
-        return $this->programs;
+        return $this->seasons;
     }
 
-    /**
-     * param Program $program
-     * @param Program $program
-     * @return Program
-     */
-    public function addProgram(Program $program): self
+    public function addSeason(Season $season): self
     {
-        if (!$this->programs->contains($program)) {
-            $this->programs[] = $program;
-            $program->setCategory($this);
+        if (!$this->seasons->contains($season)) {
+            $this->seasons[] = $season;
+            $season->setProgram($this);
         }
 
         return $this;
     }
 
-    /**
-     * @param Program $program
-     * @return Category
-     */
-    public function removeProgram(Program $program): self
+    public function removeSeason(Season $season): self
     {
-        if ($this->programs->contains($program)) {
-            $this->programs->removeElement($program);
+        if ($this->seasons->contains($season)) {
+            $this->seasons->removeElement($season);
             // set the owning side to null (unless already changed)
-            if ($program->getCategory() === $this) {
-                $program->setCategory(null);
+            if ($season->getProgram() === $this) {
+                $season->setProgram(null);
             }
         }
 
