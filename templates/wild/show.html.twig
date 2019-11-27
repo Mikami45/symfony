@@ -5,15 +5,25 @@
 {% block body %}
 
     <div class="media block-main">
-        <img class="align-self-start mr-3" src="{{program.poster}}" alt="{{ program.title }} poster">
+        <img class="align-self-start mr-3" src="{{ program.poster }}" alt="{{ program.title }} poster">
         <div class="media-body">
-            <h1 class="mt-0">{{ program.title }}</h1>
-            <p>{{ program.summary }}</p>
-            <p>Categorie : {{ program.category.name }}</p>
-            {% for season in seasons %}
-                <a href="{{ path('show_season', {'id' : season.id}) }}">Saison : {{ season.id }}<br></a>
-            {% endfor %}
+            <div class="card-body">
+                <h5 class="card-title" class="mt-0">{{ program.title }}</h5>
+                <h6 class="card-subtitle mb-2 text-muted">Categorie : {{ program.category.name }}
+                    <p>{{ program.summary }}</p></h6>
+                {% for season in seasons %}
+                    <div class="card-body">
+                        <div class="card-title">
+                            <h5 class="card-title text-center" class="mt-0">{{ program.title }}</h5></div>
+                        <div class="card text-center">
+                            <a href="{{ path('show_season', {'id' : season.id}) }}">Saison : {{ season.id }}<br></a>
+                        </div>
+                    </div>
+                {% endfor %}
+                <a href="{{ path('wild_index') }}">
+                    <button type="button" class="btn btn-secondary">Retour aux séries</button>
+                </a>
+            </div>
         </div>
     </div>
-
 {% endblock %}

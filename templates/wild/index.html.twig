@@ -4,12 +4,29 @@
 
 {% block body %}
     <h1>Toutes les séries : </h1>
-    {% for program in programs %}
-        <div class="seriespage">
-            <a href="/wild/show/{{ program.title |replace({' ':'-'})|lower }}"><h2>{{ loop.index }} / {{ program.title }} - Catégorie : {{ program.category.name }}</h2></a>
-            <p>{{ program.summary }}</p>
+
+
+    <div class="seriespage">
+        <div class="container-fluid">
+            <div class="row">
+                {% for program in programs %}
+                    <div class="card col-4" style="width: 25%;">
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                <a href="/wild/show/{{ program.title |replace({' ':'-'})|lower }}">
+                                    <h2>{{ loop.index }}
+                                        / {{ program.title }} - <h6 class="card-subtitle mb-2 text-muted">Catégorie
+                                            : {{ program.category.name }}</h6></h2>
+                                </a>
+                            </h5>
+                            <p class="card-text">{{ program.summary }}</p>
+                        </div>
+                    </div>
+
+                {% else %}
+                    Aucune série trouvée.
+                {% endfor %}
+            </div>
         </div>
-    {% else %}
-        Aucune série trouvée.
-    {% endfor %}
+    </div>
 {% endblock %}

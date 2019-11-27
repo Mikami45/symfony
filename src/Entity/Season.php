@@ -114,4 +114,15 @@ class Season
 
         return $this;
     }
+
+    public function getNumber(): ?int
+    {
+        return $this->number;
+    }
+    public function setNumber(?int $number): self
+    {
+        $this->number = $number;
+
+        return $this;
+    }
 }

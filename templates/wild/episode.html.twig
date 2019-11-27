@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="card col-sm-12" style="width: 50%;">
+        <div class="card-body">
+            <h5 class="card-title">{{ program.title }}</h5>
+            <h6 class="card-subtitle mb-2 text-muted">Saison {{ season.id }} , Episode {{ episode.number }}
+                : {{ episode.title }}</h6>
+            <p class="card-text">Synopsis : {{ episode.synopsis }}</p>
+
+        </div>
+    </div>
+    <a href="/wild/season/{{ season.id }}">
+        <button class="btn btn-secondary">Retour vers la saison</button>
+    </a>
+    <a href="/wild/show/{{ program.title }}">
+        <button class="btn btn-secondary">Retour vers la série</button>
+    </a>
+{% endblock %}

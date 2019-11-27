@@ -8,6 +8,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Program;
 use App\Entity\Category;
 use App\Entity\Season;
+use App\Entity\Episode;
 
 /**
  * @Route ("/wild")
@@ -44,7 +45,7 @@ class WildController extends AbstractController
     {
         if (!$categoryName) {
             throw $this
-                ->createNotFoundException('No slug has been sent to find a program in program\'s table');
+                ->createNotFoundException('No category has been sent to find a program in program\'s table');
         }
         $categoryName = preg_replace(
             '/-/',
@@ -133,6 +134,22 @@ class WildController extends AbstractController
             'season' => $season,
             'program' => $program,
             'episodes' => $episodes,
+        ]);
+    }
+
+    /**
+     *
+     * @Route("/episode/{id}",  name="show_episode")
+     *
+     */
+    public function showEpisode(Episode $episode) :Response
+    {
+        $season = $episode->getSeason();
+        $program = $season->getProgram();
+        return $this->render('wild/episode.html.twig', [
+            'episode'=>$episode,
+            'season'=>$season,
+            'program'=>$program,
         ]);
     }
 }

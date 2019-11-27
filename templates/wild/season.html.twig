@@ -9,16 +9,16 @@
             <p class="card-title">Liste des épisodes:</p>
             {% for episode in episodes %}
                 <div class="row">
-                    <div class="col-sm-10 offset-sm-1">
+                    <div class=" offset-sm-4 col-sm-4 offset-sm-4">
                         <div class="card text-center">
-                            <div class="card-body">
-                                <h5 class="card-title">{{ episode.number }}: {{ episode.title }}</h5>
-                                <p class="card-text">{{ episode.synopsis }}</p>
-                            </div>
-                        </div>
+                            <a href="/wild/episode/{{ episode.id }}"><p>Episode {{ episode.number }}
+                                    : {{ episode.title }}</p></a></div>
                     </div>
                 </div>
             {% endfor %}
+            <a href="/wild/show/{{ program.title }}">
+                <button type="button" class="btn btn-secondary">Retour</button>
+            </a>
         </div>
     </div>
 {% endblock %}
