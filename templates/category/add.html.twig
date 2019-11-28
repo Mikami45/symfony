@@ -1,0 +1,16 @@
+{%  extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Création d'une catégorie.</h1>
+    {{ form_start(form) }}
+
+    {{ form_row(form.name) }}
+
+    <button class="btn btn-secondary">{{ button_label|default('Save') }}</button>
+
+    {{ form_end(form) }}
+<a href="/wild">
+    <button type="button" class="btn btn-secondary">Retour aux séries</button>
+</a>
+    
+{% endblock %}

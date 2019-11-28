@@ -2,6 +2,7 @@
 // src/Controller/WildController.php
 namespace App\Controller;
 
+use App\Form\ProgramSearchType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -9,6 +10,7 @@ use App\Entity\Program;
 use App\Entity\Category;
 use App\Entity\Season;
 use App\Entity\Episode;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * @Route ("/wild")
@@ -29,12 +31,21 @@ class WildController extends AbstractController
             throw $this->CreateNotFoundException(
                 'No program found in program\'s table'
             );
+
         }
+        $category = new Category();
+        $form = $this->createForm(
+
+            ProgramSearchType::class, $category
+
+        );
         return $this->render(
             'wild/index.html.twig', [
             'programs' => $programs,
+            'form' => $form->createView(),
         ]);
     }
+
     /**
      * @Route("/category/{categoryName}",
      *     name="show_category"),
@@ -142,14 +153,14 @@ class WildController extends AbstractController
      * @Route("/episode/{id}",  name="show_episode")
      *
      */
-    public function showEpisode(Episode $episode) :Response
+    public function showEpisode(Episode $episode): Response
     {
         $season = $episode->getSeason();
         $program = $season->getProgram();
         return $this->render('wild/episode.html.twig', [
-            'episode'=>$episode,
-            'season'=>$season,
-            'program'=>$program,
+            'episode' => $episode,
+            'season' => $season,
+            'program' => $program,
         ]);
     }
 }
