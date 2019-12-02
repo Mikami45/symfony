@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Program{% endblock %}
+
+{% block body %}
+    <h1>Program</h1>
+
+    <table class="table">
+        <tbody>
+        <tr>
+            <th>Id</th>
+            <td>{{ program.id }}</td>
+        </tr>
+        <tr>
+            <th>Title</th>
+            <td>{{ program.title }}</td>
+        </tr>
+        <tr>
+            <th>Summary</th>
+            <td>{{ program.summary }}</td>
+        </tr>
+        <tr>
+            <th>Poster</th>
+            <td>{{ program.poster }}</td>
+        </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('program_index') }}">
+        <button type="button" class="btn btn-secondary">back to list</button>
+    </a>
+
+    <a href="{{ path('program_edit', {'id': program.id}) }}">
+        <button type="button" class="btn btn-secondary">edit</button>
+    </a>
+
+    {{ include('program/_delete_form.html.twig') }}
+{% endblock %}
