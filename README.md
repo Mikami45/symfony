@@ -1,4 +1,4 @@
-# symphony
+# symfony
 
 Quest 13 | Wild Code School
 
