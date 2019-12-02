@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ actor.name }}{% endblock %}
+{% block body %}
+    <h1>{{ actor.name }}</h1>
+    <h2>Jouent dans :</h2>
+    {% for program in programs %}
+        <ul>
+            <li>
+                <a href="{{ path ('show_program' , {'slug':program.title}) }}">{{ program.title }}</a>
+            </li>
+        </ul>
+    {% endfor %}
+
+{% endblock %}

@@ -2,6 +2,7 @@
 // src/Controller/WildController.php
 namespace App\Controller;
 
+use App\Entity\Actor;
 use App\Form\ProgramSearchType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -157,10 +158,26 @@ class WildController extends AbstractController
     {
         $season = $episode->getSeason();
         $program = $season->getProgram();
+
         return $this->render('wild/episode.html.twig', [
             'episode' => $episode,
             'season' => $season,
             'program' => $program,
+        ]);
+    }
+
+    /**
+     * @Route ("/actor/{id}", name="show_actor")
+     * @param Actor $actor
+     * @return Response
+     */
+    public function showActor(Actor $actor): Response
+    {
+        $programs = $actor->getPrograms();
+
+        return $this->render('wild/actor.html.twig', [
+            'actor' => $actor,
+            'programs' => $programs,
         ]);
     }
 }
