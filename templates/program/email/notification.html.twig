@@ -1,0 +1,13 @@
+{% extends 'layoutmail.html.twig' %}
+
+{% block body %}
+    <div style="background-color: lightgray">
+        <div style="color:purple"><h1>{{ program.title }}</h1></div>
+        <div style="color:black"><h2><a href="http://127.0.0.1:8000/wild/show/{{ program.title }}"></a></h2></div>
+        <p style="color:black">Pourquoi les femmes se maquillent et se parfument ?
+
+            Parce qu’elles sont moches et qu’elles puent.</p>
+
+        <a href="http://127.0.0.1:8000/wild/show/{{ program.slug }}">Clique ici mon ami ! Tu vas trop adorer ! :D</a>
+    </div>
+{% endblock %}
