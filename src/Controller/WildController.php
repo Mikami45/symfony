@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Actor;
 use App\Form\ProgramSearchType;
+use App\Slugify;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
